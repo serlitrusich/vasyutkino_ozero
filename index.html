@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Тренажёр МЦКО: «Васюткино озеро»</title>
+  <style>
+    :root{
+      --bg1:#0f172a; --bg2:#1e3a8a; --card:#ffffff; --ink:#0f172a;
+      --muted:#64748b; --blue:#2563eb; --cyan:#06b6d4; --green:#16a34a; --red:#dc2626;
+      --soft:#eff6ff; --line:#dbeafe; --gold:#f59e0b;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;font-family:Inter,Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 20% 10%,#38bdf8 0 12%,transparent 28%),linear-gradient(135deg,var(--bg1),var(--bg2));padding:18px;}
+    .wrap{max-width:1040px;margin:0 auto;}
+    .hero,.card{background:rgba(255,255,255,.96);border:1px solid rgba(255,255,255,.55);border-radius:28px;box-shadow:0 24px 70px rgba(2,6,23,.28);overflow:hidden;}
+    .hero{padding:34px;position:relative;}
+    .hero:after{content:"";position:absolute;right:-80px;top:-80px;width:220px;height:220px;border-radius:50%;background:rgba(6,182,212,.22)}
+    h1{margin:0 0 10px;font-size:clamp(28px,5vw,52px);line-height:1.03;letter-spacing:-.04em;color:#0b1f4d}
+    h2{margin:0 0 14px;font-size:28px;color:#0b1f4d}.lead{font-size:18px;line-height:1.55;color:#334155;max-width:760px}.chips{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0}.chip{padding:9px 12px;border-radius:999px;background:#e0f2fe;color:#075985;font-weight:800;font-size:14px}.btn{border:0;border-radius:16px;padding:14px 20px;font-weight:900;font-size:16px;cursor:pointer;background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;box-shadow:0 10px 25px rgba(37,99,235,.28);transition:.2s}.btn:hover{transform:translateY(-1px)}.btn.secondary{background:#e2e8f0;color:#0f172a;box-shadow:none}.btn.danger{background:linear-gradient(135deg,#ef4444,#f97316)}
+    .hidden{display:none!important}.topbar{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-bottom:14px;color:#fff}.progress{height:12px;background:rgba(255,255,255,.24);border-radius:999px;overflow:hidden;flex:1}.progress>div{height:100%;width:0;background:linear-gradient(90deg,#22c55e,#38bdf8);transition:.35s}.counter{font-weight:900;white-space:nowrap}.card{padding:26px;margin-top:14px}.variant{display:inline-flex;align-items:center;gap:8px;background:#dbeafe;color:#1d4ed8;font-weight:900;border-radius:999px;padding:8px 12px;margin-bottom:12px}.text{background:#f8fafc;border:1px solid #e2e8f0;border-radius:20px;padding:18px;line-height:1.65;font-size:17px;margin:14px 0}.question{font-size:22px;font-weight:950;line-height:1.25;margin:18px 0 12px}.options{display:grid;gap:10px;margin:14px 0}.option{padding:14px 16px;border:2px solid #dbeafe;background:#fff;border-radius:16px;cursor:pointer;font-weight:750;line-height:1.35;transition:.15s}.option:hover{border-color:#60a5fa;background:#eff6ff}.option.selected{border-color:#2563eb;background:#dbeafe}.option.correct{border-color:#22c55e;background:#dcfce7}.option.wrong{border-color:#ef4444;background:#fee2e2}.match-grid{display:grid;grid-template-columns:1fr 260px;gap:12px;margin-top:14px}.match-row{display:contents}.match-example{padding:14px;border-radius:16px;background:#f8fafc;border:1px solid #e2e8f0;line-height:1.4}.match-select{width:100%;padding:13px;border:2px solid #dbeafe;border-radius:14px;font-weight:800;background:#fff}.multi-note{color:#475569;font-weight:750;margin-top:-4px}.feedback{margin-top:16px;border-radius:18px;padding:15px 16px;font-weight:900;line-height:1.45}.feedback.ok{background:#dcfce7;color:#166534;border:1px solid #86efac}.feedback.bad{background:#fee2e2;color:#991b1b;border:1px solid #fecaca}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.score-box{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}.score-item{border-radius:20px;background:#eff6ff;padding:18px;text-align:center}.score-num{font-size:34px;font-weight:950;color:#1d4ed8}.mini{color:#64748b;font-size:14px;font-weight:800}.badge{display:inline-block;background:#fef3c7;color:#92400e;border-radius:999px;padding:6px 10px;font-weight:900;font-size:13px}.footer-note{color:#e0f2fe;text-align:center;margin:20px 0 0;font-weight:700}.em{font-weight:950;color:#1d4ed8}.pill{padding:4px 8px;border-radius:10px;background:#eef2ff;font-weight:900;color:#3730a3}@media(max-width:760px){body{padding:10px}.hero,.card{border-radius:22px;padding:20px}.match-grid{grid-template-columns:1fr}.match-row{display:block;margin-bottom:12px}.score-box{grid-template-columns:1fr}.topbar{align-items:flex-start}.counter{font-size:14px}.text{font-size:16px}.question{font-size:20px}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <section id="start" class="hero">
+    <span class="badge">цифровой тренажёр</span>
+    <h1>МЦКО-тренажёр<br>«Васюткино озеро»</h1>
+    <p class="lead">Потренируйся выполнять задания по фрагментам рассказа В. П. Астафьева: значение слова, средства выразительности, герои и события, верные утверждения.</p>
+    <div class="chips"><span class="chip">3 варианта</span><span class="chip">12 заданий</span><span class="chip">строго по порядку</span><span class="chip">мгновенная проверка</span><span class="chip">результат в конце</span></div>
+    <button class="btn" onclick="startGame()">Начать игру</button>
+  </section>
+
+  <section id="game" class="hidden">
+    <div class="topbar"><div class="counter" id="counter">Задание 1/12</div><div class="progress"><div id="bar"></div></div></div>
+    <div class="card">
+      <div class="variant" id="variant"></div>
+      <div class="text" id="fragment"></div>
+      <div class="question" id="question"></div>
+      <div id="taskArea"></div>
+      <div id="feedback" class="feedback hidden"></div>
+      <div class="actions">
+        <button class="btn" id="checkBtn" onclick="checkAnswer()">Проверить ответ</button>
+        <button class="btn secondary hidden" id="nextBtn" onclick="nextTask()">К следующему заданию</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="finish" class="hero hidden">
+    <span class="badge">результат</span>
+    <h1>Тренировка завершена!</h1>
+    <div class="score-box">
+      <div class="score-item"><div class="score-num" id="score"></div><div class="mini">правильных ответов</div></div>
+      <div class="score-item"><div class="score-num" id="percent"></div><div class="mini">процент выполнения</div></div>
+      <div class="score-item"><div class="score-num" id="level"></div><div class="mini">уровень</div></div>
+    </div>
+    <p class="lead" id="finishText"></p>
+    <button class="btn" onclick="restartGame()">Пройти ещё раз</button>
+  </section>
+  <div class="footer-note">Русский язык и литература · тренажёр по рассказу В. П. Астафьева</div>
+</div>
+<script>
+const fragments = {
+  1:`Васютка с ружьём на плече отправился в тайгу за кедровыми орехами. Мать, провожая его, напомнила, что в лес нельзя идти без еды и спичек. Васютка сначала не хотел брать краюшку хлеба, но мать настояла: таков таёжный порядок.<br><br>В лесу мальчик увлёкся погоней за птицей, отошёл от затесей и вскоре понял, что заблудился. Он испугался, но вспомнил слова отца и дедушки: «Тайга, наша кормилица, хлипких не любит!» Васютка стал думать, что нужно делать дальше: развести костёр, беречь патроны и не терять силы.<br><br>Вечером в лес бесшумно, как сова, прилетела ночь. Мальчик устроился на ночлег, а утром снова начал искать дорогу. Он стрелял в воздух и ждал ответа, но тайга не откликалась. Васютка не сдался: он продолжал идти и вскоре вышел к озеру, в котором оказалось много рыбы.`,
+  2:`Васютка поднял голову. На самой вершине старой взлохмаченной ели увидел кедровку. Птица держала в когтях кедровую шишку и орала во всё горло. Ей так же горласто откликались подруги.<br><br>Васютка не любил этих нахальных птиц, уничтожающих несметное количество кедровых шишек. Он снял с плеча ружьё, но вспомнил про дедушку, про его наказ — попусту не палить, потеребил себя за ухо и стрелять раздумал.<br><br>— Кря-кря! — с досадой передразнил он кедровку и запустил в неё палкой.<br><br>Кедровка перестала кричать и с любопытством следила, как не долетевшая до неё палка падала вниз. Когда та шлёпнулась в мох, кедровка презрительно глянула на Васютку нахальным круглым глазом, потом неторопливо общипалась, задрала голову, и по лесу снова понеслось её надоедливое «кря».`,
+  3:`Рыбаки из бригады Григория Афанасьевича Шадрина совсем было приуныли. Частые осенние дожди вспучили реку, вода в ней поднялась, и рыба стала плохо ловиться: ушла на глубину.<br><br>Холодная изморозь и тёмные волны на реке нагоняли тоску. Но вот подул с юга тёплый ветер и точно разгладил лица людей. Рыбаки вспоминали, что раньше рыба тучами ходила, а теперь уловы стали малы.<br><br>Вечерами в избушке становилось людно и шумно. Рыбаки ужинали, курили, щёлкали орехи, рассказывали были и небылицы. К ночи на полу лежал толстый слой ореховой скорлупы. Трещала она под ногами, как осенний ледок на лужах.<br><br>Васютка снабжал рыбаков орехами. Всё дальше и дальше приходилось ему забираться в глубь леса. Мать напоминала ему: «Ты от затесей далеко не отходи — сгинешь».`
+};
+const tasks=[
+ {v:1,n:'№3',type:'single',q:'Выберите слово со значением «метки, зарубки на деревьях, помогающие не заблудиться в лесу».',opts:['Краюшка','Затеси','Патроны','Кедровки'],a:1,ex:'Правильно: <b>затеси</b> — это зарубки/метки на деревьях, указывающие путь.'},
+ {v:1,n:'№4',type:'match',q:'Установите соответствие между примерами и средствами художественной выразительности.',left:['А. «В лес бесшумно, <span class="em">как сова</span>, прилетела ночь»','Б. «Тайга <span class="em">не откликалась</span>»','В. «Тайга, наша <span class="em">кормилица</span>, хлипких не любит!»','Г. «сквозь сухие <span class="em">колючие</span> ветви»'],right:['эпитет','метафора','олицетворение','сравнение'],a:[3,2,1,0],ex:'А — сравнение; Б — олицетворение; В — метафора; Г — эпитет.'},
+ {v:1,n:'№5',type:'match',q:'Соотнесите героя и событие.',left:['Васютка','Григорий Афанасьевич Шадрин','Мать Васютки'],right:['Заблудился в тайге, но сумел выжить и найти озеро.','Был отцом Васютки и руководил рыбацкой бригадой.','Напомнила сыну взять в лес хлеб и спички.','Был старшиной рыболовецкого бота.','Первым увидел Васютку на берегу Енисея.'],a:[0,1,2],ex:'Васютка — 1; Григорий Афанасьевич Шадрин — 2; мать Васютки — 3.'},
+ {v:1,n:'№6',type:'multi',q:'Выберите два верных утверждения.',opts:['Васютка отправился в тайгу за кедровыми орехами.','Главным героем рассказа является Григорий Афанасьевич Шадрин.','Васютка сумел выжить в тайге благодаря знаниям, наблюдательности и выдержке.','Озеро, найденное Васюткой, оказалось безрыбным.','После возвращения домой Васютка отказался показывать рыбакам найденное озеро.'],a:[0,2],ex:'Верно: Васютка отправился за кедровыми орехами; выжить ему помогли знания, наблюдательность и выдержка.'},
+ {v:2,n:'№3',type:'single',q:'Выберите слово со значением «птица, питающаяся кедровыми орехами».',opts:['Кедровка','Глухарь','Дятел','Утка'],a:0,ex:'Правильно: <b>кедровка</b> — птица, связанная с кедровыми орехами.'},
+ {v:2,n:'№4',type:'match',q:'Установите соответствие между примерами и средствами художественной выразительности.',left:['А. «на самой вершине старой <span class="em">взлохмаченной</span> ели»','Б. «птица… <span class="em">орала во всё горло</span>»','В. «кедровка <span class="em">презрительно глянула</span> на Васютку»','Г. «следила, как не долетевшая до неё палка падала вниз»'],right:['эпитет','метафора','олицетворение','сравнение'],a:[0,1,2,3],ex:'По ключу файла: А — эпитет; Б — метафора; В — олицетворение; Г — сравнение.'},
+ {v:2,n:'№5',type:'match',q:'Соотнесите героя и событие.',left:['Васютка','Дедушка Афанасий','Мать Васютки'],right:['Напомнила сыну, что в лес нужно взять хлеб и спички.','Отправился в тайгу за кедровыми орехами.','Учил не тратить патроны попусту.','Был начальником рыболовецкой бригады.','Нашёл Васютку на берегу Енисея.'],a:[1,2,0],ex:'Васютка — 2; дедушка Афанасий — 3; мать Васютки — 1.'},
+ {v:2,n:'№6',type:'multi',q:'Выберите два верных утверждения.',opts:['Васютка снабжал рыбаков кедровыми орехами.','Васютка заблудился, потому что погнался за кедровкой.','Дедушка учил Васютку бережно относиться к патронам.','Найденное Васюткой озеро назвали именем его отца.','В тайге Васютка сразу встретил людей и быстро вернулся домой.'],a:[0,2],ex:'По ключу файла верны утверждения 1 и 3: Васютка снабжал рыбаков орехами; дедушка учил беречь патроны.'},
+ {v:3,n:'№3',type:'single',q:'Выберите слово со значением «зарубки, отметки на деревьях, указывающие путь в тайге».',opts:['Изморозь','Затеси','Небылицы','Скорлупа'],a:1,ex:'Правильно: <b>затеси</b> — зарубки, отметки на деревьях.'},
+ {v:3,n:'№4',type:'match',q:'Установите соответствие между примерами и средствами художественной выразительности.',left:['А. «<span class="em">Холодная</span> изморозь и <span class="em">тёмные</span> волны»','Б. «рыба <span class="em">тучами</span> ходила»','В. «ветер… <span class="em">разгладил лица</span> людей»','Г. «трещала она под ногами, <span class="em">как осенний ледок</span> на лужах»'],right:['олицетворение','сравнение','эпитет','метафора'],a:[2,3,0,1],ex:'А — эпитет; Б — метафора; В — олицетворение; Г — сравнение.'},
+ {v:3,n:'№5',type:'match',q:'Соотнесите героя и событие.',left:['Васютка','Григорий Афанасьевич Шадрин','Дядя Коляда'],right:['Был старшиной рыбосборочного бота и привёз Васютке учебники.','Снабжал рыбаков кедровыми орехами.','Был отцом Васютки и руководил рыбацкой бригадой.','Заблудился в тайге, потому что ушёл далеко от затесей.','Напомнила Васютке взять хлеб в лес.'],a:[1,2,0],ex:'Васютка — 2; Григорий Афанасьевич Шадрин — 3; дядя Коляда — 1.'},
+ {v:3,n:'№6',type:'multi',q:'Выберите два верных утверждения.',opts:['Рыбаки из бригады Григория Афанасьевича сначала радовались богатым уловам.','Васютка снабжал рыбаков кедровыми орехами.','Мать предупреждала Васютку, чтобы он не отходил далеко от затесей.','Дядя Коляда был отцом Васютки.','Васютка отправился в тайгу без ружья, еды и спичек.'],a:[1,2],ex:'Верно: Васютка снабжал рыбаков орехами; мать предупреждала его не отходить от затесей.'}
+];
+let order=[],idx=0,score=0,locked=false;
+function startGame(){order=[...Array(tasks.length).keys()];idx=0;score=0;locked=false;document.getElementById('start').classList.add('hidden');document.getElementById('finish').classList.add('hidden');document.getElementById('game').classList.remove('hidden');renderTask();}
+function restartGame(){startGame();}
+function renderTask(){locked=false;const t=tasks[order[idx]];document.getElementById('counter').textContent=`Задание ${idx+1}/${tasks.length}`;document.getElementById('bar').style.width=`${(idx)/tasks.length*100}%`;document.getElementById('variant').innerHTML=`Вариант ${t.v} · ${t.n}`;document.getElementById('fragment').innerHTML=fragments[t.v];document.getElementById('question').textContent=t.q;document.getElementById('feedback').className='feedback hidden';document.getElementById('feedback').innerHTML='';document.getElementById('checkBtn').classList.remove('hidden');document.getElementById('nextBtn').classList.add('hidden');const area=document.getElementById('taskArea');area.innerHTML='';
+ if(t.type==='single'||t.type==='multi'){if(t.type==='multi'){const note=document.createElement('div');note.className='multi-note';note.textContent='Можно выбрать только два ответа.';area.appendChild(note);}const box=document.createElement('div');box.className='options';t.opts.forEach((op,i)=>{const d=document.createElement('div');d.className='option';d.dataset.i=i;d.innerHTML=`<span class="pill">${i+1}</span> ${op}`;d.onclick=()=>selectOption(d,t.type);box.appendChild(d)});area.appendChild(box);} 
+ if(t.type==='match'){const grid=document.createElement('div');grid.className='match-grid';t.left.forEach((l,i)=>{const ex=document.createElement('div');ex.className='match-example';ex.innerHTML=l;const sel=document.createElement('select');sel.className='match-select';sel.dataset.i=i;sel.innerHTML='<option value="">— выберите ответ —</option>'+t.right.map((r,j)=>`<option value="${j}">${j+1}. ${r}</option>`).join('');grid.appendChild(ex);grid.appendChild(sel);});area.appendChild(grid);} }
+function selectOption(el,type){if(locked)return;if(type==='single'){document.querySelectorAll('.option').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');}else{const selected=document.querySelectorAll('.option.selected');if(el.classList.contains('selected')){el.classList.remove('selected');return}if(selected.length<2)el.classList.add('selected');}}
+function arraysEq(a,b){return a.length===b.length && a.every(x=>b.includes(x));}
+function checkAnswer(){if(locked)return;const t=tasks[order[idx]];let ok=false;let user=[];if(t.type==='single'){const s=document.querySelector('.option.selected');if(!s){showBad('Сначала выбери ответ.');return}user=[Number(s.dataset.i)];ok=user[0]===t.a;markOptions(t,user,ok);}if(t.type==='multi'){user=[...document.querySelectorAll('.option.selected')].map(x=>Number(x.dataset.i));if(user.length!==2){showBad('Нужно выбрать ровно два ответа.');return}ok=arraysEq(user,t.a);markOptions(t,user,ok);}if(t.type==='match'){const sels=[...document.querySelectorAll('select')];if(sels.some(s=>s.value==='')){showBad('Заполни все строки соответствия.');return}user=sels.map(s=>Number(s.value));ok=user.every((v,i)=>v===t.a[i]);sels.forEach((s,i)=>{s.style.borderColor = user[i]===t.a[i] ? '#22c55e' : '#ef4444';s.style.background = user[i]===t.a[i] ? '#dcfce7' : '#fee2e2';});}
+ locked=true;if(ok){score++;showOk('Всё правильно! '+t.ex);}else{showBad('Есть ошибка. '+t.ex);}document.getElementById('checkBtn').classList.add('hidden');document.getElementById('nextBtn').classList.remove('hidden');}
+function markOptions(t,user,ok){document.querySelectorAll('.option').forEach(o=>{const i=Number(o.dataset.i);if((Array.isArray(t.a)?t.a:[t.a]).includes(i))o.classList.add('correct');else if(user.includes(i))o.classList.add('wrong');});}
+function showOk(msg){const f=document.getElementById('feedback');f.className='feedback ok';f.innerHTML=msg;}
+function showBad(msg){const f=document.getElementById('feedback');f.className='feedback bad';f.innerHTML=msg;}
+function nextTask(){idx++;if(idx>=tasks.length){finish();return}renderTask();}
+function finish(){document.getElementById('bar').style.width='100%';document.getElementById('game').classList.add('hidden');document.getElementById('finish').classList.remove('hidden');const p=Math.round(score/tasks.length*100);document.getElementById('score').textContent=`${score}/${tasks.length}`;document.getElementById('percent').textContent=p+'%';let lvl='База';let text='Нужно ещё раз пройти тренажёр и внимательно читать формулировки.';if(p>=85){lvl='Отлично';text='Сильный результат! Можно переходить к новой пачке заданий или усложнять формат.'}else if(p>=65){lvl='Хорошо';text='Неплохо! Ошибки стоит разобрать: чаще всего они возникают в средствах выразительности и соответствиях.'}document.getElementById('level').textContent=lvl;document.getElementById('finishText').textContent=text;}
+</script>
+</body>
+</html>
